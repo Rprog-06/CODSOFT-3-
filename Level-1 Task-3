@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 0;
+        }
+        #calculate{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-gap: 6px;
+            max-width: 250px;
+    
+            padding: 8px;
+            border: 2px solid gray;
+            border-radius: 3px;
+        }
+        #displaycal{
+            grid-column: span 4;
+            height: 40px;
+            margin-bottom: 8px;
+            text-align: bottom;
+            padding: 10px;
+            font-size: 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            
+        }
+        button{
+            padding: 12px;
+            font-size: 20px;
+            border: 4px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button.operate{
+              background-color: green;
+              color: white;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="calculate">
+        <div id="displaycal"></div>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="calculateResult()" class="operate">=</button>
+    <button onclick="appendSymbol('/')" class="operate">/</button>
+    <button onclick="appendSymbol('*')" class="operate">*</button>
+    <button onclick="appendSymbol('-')" class="operate">-</button>
+    <button onclick="appendSymbol('+')" class="operate">+</button>
+    <button onclick="appendSymbol('.')">.</button>
+    <button onclick="appendSymbol('9')">9</button> 
+    <button onclick="appendSymbol('8')">8</button>   
+    <button onclick="appendSymbol('7')">7</button>  
+    
+    <button onclick="appendSymbol('6')">6</button> 
+    <button onclick="appendSymbol('5')">5</button>
+    <button onclick="appendSymbol('4')">4</button>
+    <button onclick="appendSymbol('3')">3</button> 
+    <button onclick="appendSymbol('2')">2</button>
+   
+    <button onclick="appendSymbol('1')">1</button>
+    
+    <button onclick="appendSymbol('0')">0</button>
+   
+</div>
+    </div>
+    <script>
+         let display = document.getElementById('displaycal');
+    let currentInput = '';
+
+    function clearDisplay() {
+        currentInput = '';
+        updateDisplay();
+    }
+
+    function appendSymbol(symbol) {
+        currentInput += symbol;
+        updateDisplay();
+    }
+
+    function calculateResult() {
+        try {
+            currentInput = eval(currentInput).toString();
+            updateDisplay();
+        } catch (error) {
+            currentInput = 'Error';
+            updateDisplay();
+        }
+    }
+
+    function updateDisplay() {
+        display.textContent = currentInput;
+    }
+    </script>
+
+</body>
+</html>
